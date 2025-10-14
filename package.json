@@ -1,0 +1,13 @@
+{
+  "name": "teclado",
+  "version": "1.0.0",
+  "description": "Aplicación estática para práctica de mecanografía",
+  "scripts": {
+    "lint": "htmlhint index.html",
+    "serve": "npx http-server . -p 8080",
+    "sonar": "sonar-scanner"
+  },
+  "devDependencies": {
+    "htmlhint": "^1.1.4"
+  }
+}

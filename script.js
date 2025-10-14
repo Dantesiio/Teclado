@@ -1,9 +1,9 @@
 const keys = document.querySelectorAll(".keyboard li");
 
 function getRandomNumber(min, max) {
-  min = Math.floor(min);
-  max = Math.ceil(max);
-  return Math.ceil(Math.random() * (min - max + 1) + max);
+  const safeMin = Math.ceil(min);
+  const safeMax = Math.floor(max);
+  return Math.floor(Math.random() * (safeMax - safeMin + 1)) + safeMin;
 }
 
 function getRandomKey() {
@@ -19,13 +19,18 @@ document.addEventListener("keydown", (e) => {
   const keyPressed = e.key.toUpperCase();
   const keyElement = document.getElementById(keyPressed);
   const highlightedKey = document.querySelector(".selected");
+
+  if (!keyElement) {
+    return;
+  }
+
   keyElement.classList.add("hit");
 
   keyElement.addEventListener("animationend", () => {
     keyElement.classList.remove("hit");
   });
 
-  if (keyPressed === highlightedKey.innerHTML) {
+  if (highlightedKey && keyPressed === highlightedKey.innerHTML) {
     highlightedKey.classList.remove("selected");
     if (keyPressed === "CAPSLOCK") {
       keyElement.classList.remove("selected");
